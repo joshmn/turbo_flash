@@ -2,7 +2,7 @@
 
 Automagically include your flash messages in your Ruby on Rails [TurboStream](https://github.com/hotwired/turbo-rails) responses.
 
-![Video demo](https://i.imgur.com/vOmf6FV.mp4)
+![Video demo](https://i.imgur.com/pVqX9ZV.gif)
 
 ## Usage
 
