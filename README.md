@@ -6,7 +6,10 @@ Automagically include your flash messages in your Ruby on Rails [TurboStream](ht
 
 ## Usage
 
-TurboFlash exposes a `flash.turbo` method that's similar to `flash.now`:
+By default, TurboFlash will inherit all flashes that you normally set. This can be turned off with the `inherit_flashes`
+configuration flag.
+
+To explicitly set flashes, TurboFlash exposes a `flash.turbo` method that's similar to `flash`:
 
 ```ruby
 class UsersController < ApplicationController
@@ -36,8 +39,6 @@ class UsersController < ApplicationController
   end
 end
 ```
-
-Note: You must explicitly call `flash.turbo` (for now). This will not use the original flash hash.
 
 Of course, the response will be what you expect:
 
@@ -112,10 +113,16 @@ Ensure that the TurboStream target — a tag with an `id` of `flash` exists in y
 
 ## Configuration
 
-In an initializer:
+In an initializer (defaults are shown):
 
 ```
 TurboFlash.configure do |config|
+  # make all flashes TurboFlash-flashes
+  # config.inherit_flashes = true 
+  
+  # clear the TurboFlash target if there are no flashes in a TurboStream response
+  # config.clear_target_unless_flashed = true 
+  
   # the default TurboStream target element ID
   # config.target = "flash"
   
@@ -132,6 +139,16 @@ TurboFlash.configure do |config|
   # config.value = :message 
 end
 ```
+
+## Gotchas
+
+If `TurboFlash.configuration.inherit_flashes` is `false`, and you want to copy over the regular flashes,
+you can invoke `flash.turbo!(options = {})` to copy over the flashes that are currently stored in the session.
+
+If `TurboFlash.configuration.clear_target_unless_flashed` is `false`, and you would like to clear flashes in the TurboStream
+response, you can invoke `flash.turbo.clear_target!` to clear the TurboStream target if there are no flashes.
+
+If you want to clear all potential TurboFlashes, call `flash.turbo.clear!`
 
 ## Contributing
 

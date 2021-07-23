@@ -7,12 +7,62 @@ module TurboFlash
 
     def initialize(flash)
       super
+      @copied_flashes = false
       @temp_options = nil
       @default_render_target = TurboFlash.configuration.target
       @default_render_options = { action: TurboFlash.configuration.action, partial: TurboFlash.configuration.partial }
       @locals_key = TurboFlash.configuration.key
       @locals_value = TurboFlash.configuration.value
       @options = {}
+      @clear_target = false
+      @cleared = false
+    end
+
+    def copied_flashes?
+      @copied_flashes
+    end
+
+    def from_flashes(other_flashes, options)
+      other_flashes.each do |k,v|
+        from_flash(k, v, options)
+      end
+      @copied_flashes = true
+
+      true
+    end
+
+    def cleared?
+      @cleared
+    end
+
+    def unclear!
+      @cleared = false
+    end
+
+    def clear!
+      @cleared = true
+    end
+
+    def from_flash(k, v, options = {})
+      set_options(options)[k] = v
+
+      true
+    end
+
+    def clear_target?
+      @clear_target
+    end
+
+    def clear_target!
+      @clear_target = true
+    end
+
+    def reset_clear_target!
+      @clear_target = false
+    end
+
+    def flashes
+      @flash.instance_variable_get(:@flashes)
     end
 
     def []=(k, v)
