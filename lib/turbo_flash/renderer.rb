@@ -28,9 +28,6 @@ module TurboFlash
 
         flash.clear
 
-        puts "flashed? #{flashed}"
-        puts "Clear unless flashed: #{TurboFlash.configuration.clear_target_unless_flashed?}"
-        puts "flash.turbo.clear_target : #{flash.turbo.clear_target?}"
         if (!flashed && TurboFlash.configuration.clear_target_unless_flashed?) || flash.turbo.clear_target?
           result << turbo_stream.send(:update, TurboFlash.configuration.target) do
             ""
