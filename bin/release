@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/turbo_flash/version'
+
+version = TurboFlash::VERSION
+system('gem build turbo_flash.gemspec')
+system("gem push turbo_flash-#{version}.gem")
+system("rm turbo_flash-#{version}.gem")
+system("git tag -a v#{version} -m 'version #{version}'")
+system("git push origin v#{version}")
