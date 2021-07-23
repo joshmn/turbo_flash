@@ -127,7 +127,7 @@ TurboFlash.configure do |config|
   # config.target = "flash"
   
   # the default TurboStream action
-  # config.action = :append 
+  # config.action = :update 
   
   # the default TurboStream partial
   # config.partial = 'shared/flash'

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    turbo_flash (2.0.0)
+    turbo_flash (2.0.1)
       hotwire-rails (~> 0.1.2)
 
 GEM
