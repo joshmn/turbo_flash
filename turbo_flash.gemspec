@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ['Josh Brody']
   spec.email       = ['git@josh.mn']
   spec.homepage    = 'https://github.com/joshmn/turbo_flash'
-  spec.summary     = 'Automatically render flash messages in TurboStream responses.'
+  spec.summary     = 'Automagically include your flash messages in your Ruby on Rails TurboStream responses.'
   spec.description = spec.summary
   spec.license     = 'MIT'
 
