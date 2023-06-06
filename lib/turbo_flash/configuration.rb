@@ -21,5 +21,9 @@ module TurboFlash
     def clear_target_unless_flashed?
       @clear_target_unless_flashed
     end
+
+    def object_partial?
+      @partial.is_a?(Class)
+    end
   end
 end

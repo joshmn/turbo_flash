@@ -71,7 +71,7 @@ module TurboFlash
       @options_for_flash = {}
       @options_for_flash = @default_render_options.dup
       @options_for_flash.merge!({ target: @default_render_target })
-      if @partial.is_a? Class
+      if TurboFlash.configuration.object_partial?
         @options_for_flash.merge!({ partial: @partial.new(role: k, message: v) })
       else
         @options_for_flash[:locals] = {
