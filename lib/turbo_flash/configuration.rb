@@ -23,7 +23,7 @@ module TurboFlash
     end
 
     def object_partial?
-      @partial.is_a?(Class)
+      @partial.is_a?(String) && Object.const_defined?(@partial)
     end
   end
 end
