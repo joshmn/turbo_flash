@@ -12,7 +12,7 @@ module TurboFlash
     @configuration ||= Configuration.new
   end
 
-  def self.config
+  def self.configure
     yield configuration
   end
 end
