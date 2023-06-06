@@ -10,7 +10,8 @@ module TurboFlash
       @copied_flashes = false
       @temp_options = nil
       @default_render_target = TurboFlash.configuration.target
-      @default_render_options = { action: TurboFlash.configuration.action, partial: TurboFlash.configuration.partial }
+      @partial = TurboFlash.configuration.partial
+      @default_render_options = { action: TurboFlash.configuration.action }
       @locals_key = TurboFlash.configuration.key
       @locals_value = TurboFlash.configuration.value
       @options = {}
@@ -70,10 +71,15 @@ module TurboFlash
       @options_for_flash = {}
       @options_for_flash = @default_render_options.dup
       @options_for_flash.merge!({ target: @default_render_target })
-      @options_for_flash[:locals] = {
-        @locals_key => k,
-        @locals_value => v
-      }
+      if TurboFlash.configuration.object_partial?
+        @options_for_flash.merge!({ partial: @partial.constantize.new(role: k, message: v) })
+      else
+        @options_for_flash.merge!({ partial: @partial })
+        @options_for_flash[:locals] = {
+          @locals_key => k,
+          @locals_value => v
+        }
+      end
       if @temp_options
         @options_for_flash.merge!(@temp_options)
         @temp_options = nil

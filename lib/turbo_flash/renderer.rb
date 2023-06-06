@@ -21,7 +21,13 @@ module TurboFlash
             next
           end
 
-          result << turbo_stream.send(flash_options.delete(:action), flash_options.delete(:target), **flash_options)
+          if TurboFlash.configuration.object_partial?
+            result << turbo_stream.send(
+              flash_options.delete(:action), flash_options.delete(:target), flash_options.delete(:partial), **flash_options
+            )
+          else
+            result << turbo_stream.send(flash_options.delete(:action), flash_options.delete(:target), **flash_options)
+          end
           flashed = true
           flash.turbo.flash.discard(key)
         end
