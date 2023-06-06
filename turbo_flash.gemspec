@@ -5,9 +5,9 @@ require_relative 'lib/turbo_flash/version'
 Gem::Specification.new do |spec|
   spec.name        = 'turbo_flash'
   spec.version     = TurboFlash::VERSION
-  spec.authors     = ['Josh Brody']
-  spec.email       = ['git@josh.mn']
-  spec.homepage    = 'https://github.com/joshmn/turbo_flash'
+  spec.authors     = ['barseek']
+  spec.email       = ['sergey.b@hey.com']
+  spec.homepage    = 'https://github.com/vagab/turbo_flash'
   spec.summary     = 'Automagically include your flash messages in your Ruby on Rails TurboStream responses.'
   spec.description = spec.summary
   spec.license     = 'MIT'
@@ -16,5 +16,5 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir['lib/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  spec.add_dependency 'hotwire-rails', '~> 0.1.2'
+  spec.add_dependency 'turbo-rails', '~> 1.4'
 end
