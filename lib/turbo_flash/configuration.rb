@@ -23,7 +23,8 @@ module TurboFlash
     end
 
     def object_partial?
-      @partial.is_a?(String) && Object.const_defined?(@partial)
+      # check if the partial is a defined class
+      @partial.is_a?(String) && @partial.split('/').map(&:camelize).join('::').safe_constantize.present?
     end
   end
 end
