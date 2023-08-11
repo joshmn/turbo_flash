@@ -116,7 +116,7 @@ Ensure that the TurboStream target — a tag with an `id` of `flash` exists in y
 In an initializer (defaults are shown):
 
 ```
-TurboFlash.configure do |config|
+TurboFlash.config do |config|
   # make all flashes TurboFlash-flashes
   # config.inherit_flashes = true 
   
