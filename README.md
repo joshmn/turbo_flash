@@ -111,6 +111,30 @@ Ensure that the TurboStream target — a tag with an `id` of `flash` exists in y
 </html>
 ```
 
+## Turbo frames (instead of *.turbo_stream.erb)
+
+When using Turbo Frames, while the controller response will be injected with the relevant turbo_stream tags, Turbo will
+only render the matching Turbo Frame content, and ignore the turbo_streams. To get around this, you can utilize the
+turbo layout `turbo_rails/frame.html.erb` and use `turbo_stream_from` to send the updates back to the browser. For example:
+
+```erb
+# app/views/layouts/turbo_rails/frame.html.erb
+<html>
+  <head>
+    <%= yield :head %>
+  </head>
+  <body>
+    
+    <% flash.turbo.flashes.each do |role, message| %>
+      <%= Turbo::StreamsChannel.broadcast_prepend_to current_user, :alerts, target: "alerts",
+      partial: 'shared/flash', locals: { role:, message: } %> <%# customize this based on your project %>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>
+```
+
 ## Configuration
 
 In an initializer (defaults are shown):
