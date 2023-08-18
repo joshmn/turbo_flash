@@ -1,3 +1,7 @@
+# Notice
+
+For the sake of your application, consider using [HotFlash](https://github.com/joshmn/hotflash) instead.
+
 # TurboFlash
 
 Automagically include your flash messages in your Ruby on Rails [TurboStream](https://github.com/hotwired/turbo-rails) responses.
